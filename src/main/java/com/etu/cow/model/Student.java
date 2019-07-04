@@ -30,14 +30,18 @@ public class Student implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
+    private String password;
+
     protected Student() {
     }
 
-    public Student(String schoolID,String firstName, String lastName, String email) {
+    public Student(String schoolID,String firstName, String lastName, String email, String password) {
         this.schoolID = schoolID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -55,6 +59,8 @@ public class Student implements Serializable {
     public String getEmail() {
         return email;
     }
+    public String getPassword() { return password; }
+
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -72,14 +78,11 @@ public class Student implements Serializable {
         this.email= email;
     }
 
-
+    public void setPassword(String password) { this.password = password; }
 
     @Override
     public String toString() {
         return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
     }
-
-
-
 
 }
