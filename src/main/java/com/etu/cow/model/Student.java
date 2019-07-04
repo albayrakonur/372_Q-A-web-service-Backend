@@ -78,7 +78,9 @@ public class Student implements Serializable {
         this.email= email;
     }
 
-    public void setPassword(String password) { this.password = password; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Override
     public String toString() {
