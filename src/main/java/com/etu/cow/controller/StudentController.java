@@ -34,7 +34,6 @@ public class StudentController {
     public String create(@RequestBody Student student){
         // save a single Student
         repository.save(new Student(student.getSchoolID(),student.getFirstName(), student.getLastName(), student.getEmail(),student.getPassword()));
-
         return "Student is created";
     }
 
@@ -43,11 +42,9 @@ public class StudentController {
 
         List<Student> students = repository.findAll();
         List<Student> student = new ArrayList<>();
-
         for (Student studentTemp : students) {
             student.add(new Student(studentTemp.getSchoolID(),studentTemp.getFirstName(), studentTemp.getLastName(), studentTemp.getEmail(), studentTemp.getPassword()));
         }
-
         return student;
     }
 
