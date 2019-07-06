@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 public class CourseController {
-
     @Autowired
     CourseRepository repository;
 
@@ -50,17 +49,14 @@ public class CourseController {
         return course;
     }
 
-    @GetMapping("/course/searchbyfirstname/{courseCode}")
-    public List<Course> fetchDataByLastName(@PathVariable String courseCode){
+    @GetMapping("/course/searchbycoursecode/{courseCode}")
+    public List<Course> fetchDataByCourseCode(@PathVariable String courseCode){
 
         List<Course> courses = repository.findByCourseCode(courseCode);
         List<Course> course = new ArrayList<>();
         for (Course courseTemp: courses) {
             course.add(new Course(courseTemp.getCourseCode(),courseTemp.getCourseName(),courseTemp.getCourseRequirements()));
         }
-
         return course;
     }
-
-
 }
