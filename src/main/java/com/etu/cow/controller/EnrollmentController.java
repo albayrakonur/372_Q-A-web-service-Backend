@@ -18,14 +18,14 @@ public class EnrollmentController {
     @GetMapping("/enrollment/bulkcreate")
     public String bulkcreate() {
         //save a list of Enrollments
-        repository.saveAll(Arrays.asList(new Enrollment("Bil113",new ArrayList<String>(Arrays.asList("151101070", "151101046", "151101032")))));
+        repository.saveAll(Arrays.asList(new Enrollment("Bil113","151101070,151101046,151101032")));
         return "Enrollments are created";
     }
 
     @PostMapping("/enrollment/create")
     public String create(@RequestBody Enrollment enrollment) {
         //save a single Enrollment
-        repository.save(new Enrollment(enrollment.getCourseID(),enrollment.getStudentList()));
+        repository.save(new Enrollment(enrollment.getCourseCode(),enrollment.getStudentList()));
         return "Enrollment is created";
     }
 
@@ -34,7 +34,7 @@ public class EnrollmentController {
         List<Enrollment> enrollments = repository.findAll();
         List<Enrollment> enrollment = new ArrayList<>();
         for (Enrollment enrollmentTemp : enrollments) {
-            enrollment.add(new Enrollment(enrollmentTemp.getCourseID(),enrollmentTemp.getStudentList()));
+            enrollment.add(new Enrollment(enrollmentTemp.getCourseCode(),enrollmentTemp.getStudentList()));
         }
         return enrollment;
     }

@@ -13,16 +13,16 @@ public class Enrollment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "courseID")
-    private String courseID;
+    @Column(name = "courseCode")
+    private String courseCode;
 
     @Column(name = "studentList")
-    private ArrayList<String> studentList;
+    private String studentList;
 
     protected Enrollment() {}
 
-    public Enrollment(String courseID, ArrayList<String> studentList) {
-        this.courseID = courseID;
+    public Enrollment(String courseCode, String studentList) {
+        this.courseCode = courseCode;
         this.studentList = studentList;
     }
 
@@ -34,25 +34,25 @@ public class Enrollment implements Serializable {
         this.id = id;
     }
 
-    public String getCourseID() {
-        return courseID;
+    public String getCourseCode() {
+        return courseCode;
     }
 
-    public void setCourseID(String courseID) {
-        this.courseID = courseID;
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
-    public ArrayList<String> getStudentList() {
+    public String getStudentList() {
         return studentList;
     }
 
-    public void setStudentList(ArrayList<String> studentList) {
+    public void setStudentList(String studentList) {
         this.studentList = studentList;
     }
 
     @Override
     public String toString() {
-        return String.format("Enrolment[id=%d, courseID='%s', studentList='%s']", id, courseID, studentList);
+        return String.format("Enrolment[id=%d, courseCode='%s', studentList='%s']", id, courseCode, studentList);
     }
 
 }

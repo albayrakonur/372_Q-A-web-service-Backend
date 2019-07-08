@@ -20,13 +20,13 @@ public class Course implements Serializable {
     private String courseName;
 
     @Column(name = "courseRequirements")
-    private ArrayList<String> courseRequirements = new ArrayList<>();
+    private String courseRequirements;
 
     protected Course() {
 
     }
 
-    public Course(String courseCode, String courseName, ArrayList<String> courseRequirements) {
+    public Course(String courseCode, String courseName, String courseRequirements) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.courseRequirements = courseRequirements;
@@ -48,11 +48,11 @@ public class Course implements Serializable {
         this.courseName = courseName;
     }
 
-    public ArrayList<String> getCourseRequirements() {
+    public String getCourseRequirements() {
         return courseRequirements;
     }
 
-    public void setCourseRequirements(ArrayList<String> courseRequirements) {
+    public void setCourseRequirements(String courseRequirements) {
         this.courseRequirements = courseRequirements;
     }
 

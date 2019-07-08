@@ -17,9 +17,9 @@ public class CourseController {
     @GetMapping("/course/bulkcreate")
     public String bulkcreate(){
         // save a list of Courses
-        repository.saveAll(Arrays.asList(new Course("Bil103","Bilgisayar Muhendisligine Giris", new ArrayList<>(Arrays.asList("-")))
-                , new Course("Bil113","Bilgisayar Programalama I", new ArrayList<>(Arrays.asList("-")))
-                , new Course("Bil211","Bilgisayar Programalama II", new ArrayList<>(Arrays.asList("Bil113"))) )
+        repository.saveAll(Arrays.asList(new Course("Bil103","Bilgisayar Muhendisligine Giris", "-")
+                , new Course("Bil113","Bilgisayar Programalama I", "-")
+                , new Course("Bil211","Bilgisayar Programalama II", "Bil113"))
         );
         return "Courses are created";
     }
