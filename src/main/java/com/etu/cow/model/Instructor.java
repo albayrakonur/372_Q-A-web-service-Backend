@@ -1,78 +1,74 @@
 package com.etu.cow.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "instructors")
-public class Instructor implements Serializable {
+public class Instructor extends AuditModel implements Serializable {
 
-    private static final long serialVersionUID = -2343243243242432341L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "firstname")
-    private String firstName;
+    @NotNull
+    @Size(max = 100)
+    private String instructorFirstName;
 
-    @Column(name = "lastname")
-    private String lastName;
+    @NotNull
+    @Size(max = 100)
+    private String instructorLastName;
 
-    @Column(name = "email")
-    private String email;
+    @NotNull
+    @Size(max = 100)
+    @Column(unique = true)
+    private String instructorMail;
 
-    @Column(name = "password")
-    private String password;
+    @NotNull
+    @Size(max = 100)
+    private String instructorPassword;
 
-    protected Instructor() {
+    public Long getId() {
+        return id;
     }
 
-    public Instructor(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getInstructorFirstName() {
+        return instructorFirstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setInstructorFirstName(String instructorFirstName) {
+        this.instructorFirstName = instructorFirstName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getInstructorLastName() {
+        return instructorLastName;
     }
 
-    public String getPassword() { return password; }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setInstructorLastName(String instructorLastName) {
+        this.instructorLastName = instructorLastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getInstructorMail() {
+        return instructorMail;
     }
 
-    public void setEmail(String email) {
-        this.email= email;
+    public void setInstructorMail(String instructorMail) {
+        this.instructorMail = instructorMail;
     }
 
-    public void setPassword(String password) {
-        this.password= password;
+    public String getInstructorPassword() {
+        return instructorPassword;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Instructor[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
+    public void setInstructorPassword(String instructorPassword) {
+        this.instructorPassword = instructorPassword;
     }
+
 
 }

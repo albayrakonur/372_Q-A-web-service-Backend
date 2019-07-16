@@ -1,90 +1,79 @@
 package com.etu.cow.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "students")
-public class Student implements Serializable {
+public class Student extends AuditModel {
 
-    private static final long serialVersionUID = -2343243243242432341L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "schoolID")
-    private String schoolID;
+    @NotNull
+    @Column(unique = true)
+    private String schoolId;
 
-    @Column(name = "firstname")
-    private String firstName;
+    @NotNull
+    @Size(max = 100)
+    @Column
+    private String studentFirstName;
 
-    @Column(name = "lastname")
-    private String lastName;
+    @NotNull
+    @Size(max = 100)
+    @Column
+    private String studentLastName;
 
-    @Column(name = "email")
-    private String email;
+    @NotNull
+    @Column(unique = true)
+    @Size(max = 100)
+    private String studentMail;
 
-    @Column(name = "password")
-    private String password;
+    @NotNull
+    @Size(max = 100)
+    private String studentPassword;
 
-    protected Student() {
+    public String getSchoolId() {
+        return schoolId;
     }
 
-    public Student(String schoolID,String firstName, String lastName, String email, String password) {
-        this.schoolID = schoolID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
+    public void setSchoolId(String schoolId) {
+        this.schoolId = schoolId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getStudentFirstName() {
+        return studentFirstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setStudentFirstName(String studentFirstName) {
+        this.studentFirstName = studentFirstName;
     }
 
-    public String getSchoolID() {
-        return schoolID;
+    public String getStudentLastName() {
+        return studentLastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-    public String getPassword() { return password; }
-
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setStudentLastName(String studentLastName) {
+        this.studentLastName = studentLastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getStudentMail() {
+        return studentMail;
     }
 
-    public void setSchoolID(String schoolID) {
-        this.schoolID = schoolID;
+    public void setStudentMail(String studentMail) {
+        this.studentMail = studentMail;
     }
 
-    public void setEmail(String email) {
-        this.email= email;
+    public String getStudentPassword() {
+        return studentPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setStudentPassword(String studentPassword) {
+        this.studentPassword = studentPassword;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Customer[id=%d, firstName='%s', lastName='%s']", id, firstName, lastName);
-    }
 
 }
