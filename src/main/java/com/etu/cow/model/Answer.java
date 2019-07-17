@@ -19,7 +19,10 @@ public class Answer extends AuditModel {
     private Long id;
 
     @Column(columnDefinition = "text")
-    private String text;
+    private String message;
+
+    @Column
+    private String author;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "question_id", nullable = false)
@@ -35,12 +38,12 @@ public class Answer extends AuditModel {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getMessage() {
+        return message;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public Question getQuestion() {
@@ -49,5 +52,13 @@ public class Answer extends AuditModel {
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

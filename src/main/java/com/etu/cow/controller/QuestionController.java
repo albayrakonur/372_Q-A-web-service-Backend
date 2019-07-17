@@ -4,11 +4,11 @@ import com.etu.cow.exception.ResourceNotFoundException;
 import com.etu.cow.model.Question;
 import com.etu.cow.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class QuestionController {
@@ -17,8 +17,12 @@ public class QuestionController {
     private QuestionRepository questionRepository;
 
     @GetMapping("/questions")
-    public Page<Question> getQuestions(Pageable pageable) {
-        return questionRepository.findAll(pageable);
+    public ResponseEntity<List> getQuestions() {
+        List<Question> questionList = questionRepository.findAll();
+        if (questionList == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(questionList, HttpStatus.OK);
     }
 
 
@@ -33,7 +37,8 @@ public class QuestionController {
         return questionRepository.findById(questionId)
                 .map(question -> {
                     question.setTitle(questionRequest.getTitle());
-                    question.setDescription(questionRequest.getDescription());
+                    question.setMessage(questionRequest.getMessage());
+                    question.setAuthor(questionRequest.getAuthor());
                     return questionRepository.save(question);
                 }).orElseThrow(() -> new ResourceNotFoundException("Question not found with id " + questionId));
     }

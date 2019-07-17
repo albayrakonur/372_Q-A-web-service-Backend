@@ -27,8 +27,6 @@ public class StudentController {
         tempStudent.setStudentMail(student.getStudentMail());
         tempStudent.setStudentPassword(student.getStudentPassword());
         return studentRepository.save(tempStudent);
-
-
     }
 
     @GetMapping("/students")

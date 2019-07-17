@@ -44,7 +44,8 @@ public class AnswerController {
 
         return answerRepository.findById(answerId)
                 .map(answer -> {
-                    answer.setText(answerRequest.getText());
+                    answer.setMessage(answerRequest.getMessage());
+                    answer.setAuthor(answerRequest.getAuthor());
                     return answerRepository.save(answer);
                 }).orElseThrow(() -> new ResourceNotFoundException("Answer not found with id " + answerId));
     }

@@ -21,7 +21,10 @@ public class Question extends AuditModel {
     private String title;
 
     @Column(columnDefinition = "text")
-    private String description;
+    private String message;
+
+    @Column
+    private String author;
 
     public Long getId() {
         return id;
@@ -39,11 +42,20 @@ public class Question extends AuditModel {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getMessage() {
+        return message;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setMessage(String message) {
+        this.message = message;
     }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
 }
