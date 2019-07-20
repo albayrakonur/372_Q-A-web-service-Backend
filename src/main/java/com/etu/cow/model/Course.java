@@ -2,6 +2,7 @@ package com.etu.cow.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "courses")

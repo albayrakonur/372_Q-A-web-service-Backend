@@ -27,6 +27,8 @@ public class AnswerController {
     @PostMapping("/questions/{questionId}/answers")
     public Answer addAnswer(@PathVariable Long questionId,
                             @Valid @RequestBody Answer answer) {
+        System.out.println("sasasasasass");
+        System.out.println(questionRepository.findByCourseId(questionId));
         return questionRepository.findById(questionId)
                 .map(question -> {
                     answer.setQuestion(question);
