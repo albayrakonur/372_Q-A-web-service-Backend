@@ -31,6 +31,22 @@ public class QuestionController {
         return new ResponseEntity<>(questionList, HttpStatus.OK);
     }
 
+    @GetMapping("/courses/{courseId}/questions/{questionId}")
+    public ResponseEntity<Question> getQuestion(@PathVariable Long courseId,
+                                            @PathVariable Long questionId) {
+        List<Question> questionList = questionRepository.findByCourseId(courseId);
+        Question question = null;
+        for (Question questionTemp : questionList) {
+            if (questionTemp.getId() == questionId) {
+                question = questionTemp;
+            }
+        }
+        if (question == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(question, HttpStatus.OK);
+    }
+
 
     @PostMapping("/courses/{courseId}/questions")
     public Question createQuestion(@PathVariable Long courseId,
