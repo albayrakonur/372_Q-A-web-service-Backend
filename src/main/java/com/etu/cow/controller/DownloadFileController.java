@@ -38,6 +38,7 @@ public class DownloadFileController {
             case "txt": return MediaType.TEXT_PLAIN;
             case "png": return MediaType.IMAGE_PNG;
             case "jpg": return MediaType.IMAGE_JPEG;
+            case "pdf": return MediaType.APPLICATION_PDF;
             default: return MediaType.APPLICATION_OCTET_STREAM;
         }
     }

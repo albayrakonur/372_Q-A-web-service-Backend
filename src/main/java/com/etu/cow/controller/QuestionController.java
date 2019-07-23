@@ -53,8 +53,6 @@ public class QuestionController {
                                    @Valid @RequestBody Question question) {
         return courseRepository.findById(courseId).map(course -> {
             question.setCourse(course);
-            System.out.println(question.toString());
-            System.out.println(course.toString());
             return questionRepository.save(question);
         }).orElseThrow(() -> new ResourceNotFoundException("Course not found with id " + courseId));
     }
