@@ -24,6 +24,10 @@ public class Resources extends AuditModel {
     @Size(min = 3, max = 100)
     private String filename;
 
+    @NotBlank
+    @Column
+    private String tag;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "course_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -53,6 +57,14 @@ public class Resources extends AuditModel {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
 }
