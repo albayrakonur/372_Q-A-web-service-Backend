@@ -27,7 +27,7 @@ public class CourseController {
     }
 
     @PostMapping("/courses")
-    public Course createQuestion(@Valid @RequestBody Course course) {
+    public Course createCourse(@Valid @RequestBody Course course) {
         return courseRepository.save(course);
     }
 
