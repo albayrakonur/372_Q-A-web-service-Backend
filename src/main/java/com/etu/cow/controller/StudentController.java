@@ -47,7 +47,7 @@ public class StudentController {
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
-    @GetMapping("/students/login")
+    @PostMapping("/students/login")
     public ResponseEntity<Student> login(@RequestParam (value = "studentMail") String studentMail,
                                          @RequestParam (value = "studentPassword") String studentPassword) {
         Student result = studentRepository.findByStudentMailAndStudentPassword(studentMail, studentPassword);
