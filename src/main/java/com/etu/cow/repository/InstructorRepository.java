@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface InstructorRepository extends JpaRepository<Instructor, Long> {
+    Instructor findByInstructorMail(String mail);
+    Instructor findByInstructorMailAndInstructorPassword(String mail, String psswd);
 }

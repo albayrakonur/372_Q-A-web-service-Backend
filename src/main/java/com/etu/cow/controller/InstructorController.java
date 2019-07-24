@@ -1,6 +1,7 @@
 package com.etu.cow.controller;
 
 import com.etu.cow.model.Instructor;
+import com.etu.cow.model.Student;
 import com.etu.cow.repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,10 +33,23 @@ public class InstructorController {
         }
         return new ResponseEntity<>(instructorList, HttpStatus.OK);
     }
-    @GetMapping("/instructors/{id}")
-    public Optional<Instructor> searchInstructor(@PathVariable (value = "id") Long id) {
-        return instructorRepository.findById(id);
+    @GetMapping("/instructors/{instructorEmail}")
+    public ResponseEntity<Instructor> searchInstructor(@PathVariable (value = "instructorEmail") String instructorEmail) {
+         Instructor result = instructorRepository.findByInstructorMail(instructorEmail);
+         if (result == null) {
+             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+         }
+         return new ResponseEntity<>(result,HttpStatus.OK);
+    }
 
+    @PostMapping("/instructors/login")
+    public ResponseEntity<Instructor> login(@RequestParam (value = "instructorMail") String instructorMail,
+                                         @RequestParam (value = "instructorPassword") String instructorPassword) {
+        Instructor result = instructorRepository.findByInstructorMailAndInstructorPassword(instructorMail, instructorPassword);
+        if(result == null) {
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
 }
