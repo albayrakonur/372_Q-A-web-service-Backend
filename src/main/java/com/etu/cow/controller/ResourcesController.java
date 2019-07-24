@@ -24,7 +24,7 @@ public class ResourcesController {
     @GetMapping("/courses/{courseId}/resources")
     public ResponseEntity<List> getResources(@PathVariable Long courseId) {
         List<Resources> resourcesList = resourcesRepository.findByCourseId(courseId);
-        if (resourcesList == null || resourcesList.size() == 0) {
+        if (resourcesList == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(resourcesList, HttpStatus.OK);
