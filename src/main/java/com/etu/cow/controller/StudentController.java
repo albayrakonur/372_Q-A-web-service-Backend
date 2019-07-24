@@ -47,6 +47,16 @@ public class StudentController {
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
+    @GetMapping("/students/login")
+    public ResponseEntity<Student> login(@RequestParam (value = "studentMail") String studentMail,
+                                         @RequestParam (value = "studentPassword") String studentPassword) {
+        Student result = studentRepository.findByStudentMailAndStudentPassword(studentMail, studentPassword);
+        if(result == null) {
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
     @DeleteMapping("/students/{id}")
     public ResponseEntity<?> deleteStudent(@Valid @PathVariable Long id) {
         return studentRepository.findById(id).map(post -> {
