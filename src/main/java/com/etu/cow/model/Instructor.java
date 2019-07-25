@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "instructors")
-public class Instructor extends AuditModel implements Serializable {
+public class Instructor extends AuditModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

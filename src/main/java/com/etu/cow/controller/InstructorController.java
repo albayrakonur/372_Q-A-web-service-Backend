@@ -1,20 +1,21 @@
 package com.etu.cow.controller;
 
+
 import com.etu.cow.model.Instructor;
-import com.etu.cow.model.Student;
 import com.etu.cow.repository.InstructorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class InstructorController {
     @Autowired
-    InstructorRepository instructorRepository;
+    private InstructorRepository instructorRepository;
+
     @PostMapping("/instructors")
     public Instructor createInstructor(@Valid @RequestBody Instructor instructor) {
         Instructor tempInstructor = new Instructor();
@@ -34,7 +35,7 @@ public class InstructorController {
         return new ResponseEntity<>(instructorList, HttpStatus.OK);
     }
     @GetMapping("/instructors/{instructorEmail}")
-    public ResponseEntity<Instructor> searchInstructor(@PathVariable (value = "instructorEmail") String instructorEmail) {
+    public ResponseEntity<Instructor> searchInstructor(@PathVariable(value = "instructorEmail") String instructorEmail) {
          Instructor result = instructorRepository.findByInstructorMail(instructorEmail);
          if (result == null) {
              return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
