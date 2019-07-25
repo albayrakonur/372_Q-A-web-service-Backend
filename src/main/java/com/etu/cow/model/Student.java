@@ -35,6 +35,14 @@ public class Student extends AuditModel {
     @Size(max = 100)
     private String studentPassword;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getSchoolId() {
         return schoolId;
     }
