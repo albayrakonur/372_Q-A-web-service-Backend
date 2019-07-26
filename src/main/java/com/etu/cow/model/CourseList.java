@@ -16,7 +16,7 @@ public class CourseList extends AuditModel {
     private Long Id;
 
     @Column(unique = true)
-    private String username;
+    private String studentSchoolId;
 
     @Column
     private String classCode;
@@ -35,6 +35,13 @@ public class CourseList extends AuditModel {
         Id = id;
     }
 
+    public String getStudentSchoolId() {
+        return studentSchoolId;
+    }
+
+    public void setStudentSchoolId(String studentSchoolId) {
+        this.studentSchoolId = studentSchoolId;
+    }
 
     public String getClassCode() {
         return classCode;
@@ -51,14 +58,5 @@ public class CourseList extends AuditModel {
     public void setCourse(Course course) {
         this.course = course;
     }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
 
 }
