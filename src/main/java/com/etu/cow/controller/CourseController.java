@@ -27,12 +27,9 @@ public class CourseController {
     }
 
     @PostMapping("/courses/getCourse")
-    public ResponseEntity<Course> getCourse(@RequestParam String courseCode) {
+    public Course getCourse(@RequestParam String courseCode) {
         Course result = courseRepository.findByCourseCode(courseCode);
-        if (result == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return result;
 
     }
 
