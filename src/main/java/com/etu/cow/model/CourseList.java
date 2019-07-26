@@ -19,6 +19,12 @@ public class CourseList extends AuditModel {
     private String studentSchoolId;
 
     @Column
+    private String studentName;
+
+    @Column
+    private String studentLastname;
+
+    @Column
     private String classCode;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -58,5 +64,22 @@ public class CourseList extends AuditModel {
     public void setCourse(Course course) {
         this.course = course;
     }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public String getStudentLastname() {
+        return studentLastname;
+    }
+
+    public void setStudentLastname(String studentLastname) {
+        this.studentLastname = studentLastname;
+    }
+
 
 }
