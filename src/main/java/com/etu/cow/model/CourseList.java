@@ -18,6 +18,9 @@ public class CourseList extends AuditModel {
     @Column(unique = true)
     private String studentSchoolId;
 
+    @Column(unique = true)
+    private String instructorEmail;
+
     @Column
     private String classCode;
 
@@ -57,6 +60,14 @@ public class CourseList extends AuditModel {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public String getInstructorEmail() {
+        return instructorEmail;
+    }
+
+    public void setInstructorEmail(String instructorEmail) {
+        this.instructorEmail = instructorEmail;
     }
 
 }
