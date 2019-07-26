@@ -32,7 +32,7 @@ public class CourseController {
         if (tmp == null) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        String result = tmp.getCourseCode() + "," + tmp.getCourseName();
+        String result = tmp.getId() + "," + tmp.getCourseName();
         return new ResponseEntity<>(result, HttpStatus.OK);
 
     }
