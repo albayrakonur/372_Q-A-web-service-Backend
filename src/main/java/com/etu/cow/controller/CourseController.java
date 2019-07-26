@@ -27,9 +27,13 @@ public class CourseController {
     }
 
     @PostMapping("/courses/getCourse")
-    public Course getCourse(@RequestParam String courseCode) {
-        Course result = courseRepository.findByCourseCode(courseCode);
-        return result;
+    public ResponseEntity<String> getCourse(@RequestParam String courseCode) {
+        Course tmp = courseRepository.findByCourseCode(courseCode);
+        if (tmp == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        String result = tmp.getCourseCode() + "," + tmp.getCourseName();
+        return new ResponseEntity<>(result, HttpStatus.OK);
 
     }
 
