@@ -26,6 +26,16 @@ public class CourseController {
         return new ResponseEntity<>(courseList, HttpStatus.OK);
     }
 
+    @GetMapping("/courses")
+    public ResponseEntity<Course> getCourse(@RequestParam String courseCode) {
+        Course result = courseRepository.findByCourseCode(courseCode);
+        if (result == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(result, HttpStatus.OK);
+
+    }
+
     @PostMapping("/courses")
     public Course createCourse(@Valid @RequestBody Course course) {
         return courseRepository.save(course);
